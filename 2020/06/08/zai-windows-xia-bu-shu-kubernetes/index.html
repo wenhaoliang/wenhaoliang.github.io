@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="js-arguements解析, lazyworm">
+    <meta name="keywords" content="在Windows下部署Kubernetes, lazyworm">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>js-arguements解析 | lazyworm</title>
+    <title>在Windows下部署Kubernetes | lazyworm</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">js-arguements解析</h1>
+                    <h1 class="description center-align post-title">在Windows下部署Kubernetes</h1>
                 </div>
             </div>
         </div>
@@ -451,7 +451,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    364
+                    391
                 </div>
                 
 
@@ -473,30 +473,35 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在函数体内，标识符arguments是指向实参对象的引用，实参对象是一个类数组对象 arguments[0]，arguments.length</p>
-<hr>
-<p>#arguments是什么?</p>
-<p>答: </p>
-<p>1: arguments是收到的实参副本，在词法分析中, 首先按形参形成AO的属性,值为undefined<br>当实参传来时, 再修改AO的相应属性。</p>
-<p>2: 并把所有收到实参收集起来,放到一个arguments对象里，t(a,b,c){},调用时: t(1,2,3,4,5) 5个参数，此时 , AO属性只有a,bc,3个属性, arguments里有1,2,3,4,5, 所有的值，对于超出形参个数之外的实参, 可以通过arguments来获得。</p>
-<p>3: arguments 的索引 从 0, 1,2,….递增,与实参逐个对应。</p>
-<p>4: arguments.length 属性代表实参的个数。</p>
-<p>5: arguments一定不是数组, 是长的比较像数组的一个对象,虽然也有length属性。</p>
-<p>6: arguments每个函数都会有,因此,arguemnts只会在内部找自身的arguments,无法引用到外层的arguments</p>
-<pre><code>// 求圆形面积,矩形面积, 三角形面积
-function area () {
-    if(arguments.length == 1) {
-        alert(3.14 * arguments[0] * arguments[0]);
-    } else if(arguments.length == 2) {
-        alert(arguments[0] * arguments[1]);
-    } else if(arguments.length == 3) {
-        alert(arguments[0] + arguments[1] + arguments[2]);
-    } else {
-        return null;
-    }
-}
-
-area(10,20,30);</code></pre><p><a href="https://liangwenhao.cn/tags/arguements/" target="_blank" rel="noopener"># arguements</a></p>
+                <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>首先去官网下载<strong>vagrant</strong>和<strong>VritualBox</strong>，<br>vagrant是一款用于创建和部署虚拟化开发环境的软件，而VritualBox就是虚拟机软件。</p>
+<h1 id="【1-4】直接部署"><a href="#【1-4】直接部署" class="headerlink" title="【1-4】直接部署"></a>【1-4】直接部署</h1><p>以下4步我已经写好了vagrantfile文件，大家可以下载我上传的vagrantfile和setup.sh文件，然后直接运行</p>
+<p><a href="https://github.com/wenhaoliang/Kubernetes">https://github.com/wenhaoliang/Kubernetes</a></p>
+<pre class=" language-bash"><code class="language-bash">vagrant up</code></pre>
+<p>就可以自动化的生成对应的一台master节点和三台worker节点</p>
+<h1 id="5-安装Docker-kubelet-kubeadm-kubectl"><a href="#5-安装Docker-kubelet-kubeadm-kubectl" class="headerlink" title="5.安装Docker kubelet kubeadm kubectl"></a>5.安装Docker kubelet kubeadm kubectl</h1><pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span>  <span class="token string">"deb https://mirrors.aliyun.com/kubernetes/apt kubernetes-xenial main"</span> <span class="token operator">>></span> /etc/apt/sources.list
+<span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y docker.io apt-transport-https curl kubelet kubeadm kubectl --allow-unauthenticated</code></pre>
+<h1 id="6-设置hosts"><a href="#6-设置hosts" class="headerlink" title="6.设置hosts"></a>6.设置hosts</h1><pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span> <span class="token string">"192.168.8.170 master1
+192.168.8.171 worker1
+192.168.8.172 worker2
+192.168.8.173 worker3"</span> <span class="token operator">>></span> /etc/hosts</code></pre>
+<p>这里要把IP和主机名字改成自己的</p>
+<h1 id="7-关闭swap和关闭防火墙"><a href="#7-关闭swap和关闭防火墙" class="headerlink" title="7.关闭swap和关闭防火墙"></a>7.关闭swap和关闭防火墙</h1><pre class=" language-bash"><code class="language-bash">swapoff -a
+ufw disable</code></pre>
+<p>接下来我们打开登陆自己的虚拟机，进入master节点</p>
+<h1 id="8-在master节点进入root账户"><a href="#8-在master节点进入root账户" class="headerlink" title="8.在master节点进入root账户"></a>8.在master节点进入root账户</h1><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">passwd</span> root
+<span class="token function">su</span> root</code></pre>
+<h1 id="9-初始化init"><a href="#9-初始化init" class="headerlink" title="9.初始化init"></a>9.初始化init</h1><pre class=" language-bash"><code class="language-bash">kubeadm init \
+--apiserver-advertise-address<span class="token operator">=</span>192.168.8.170 \
+--image-repository registry.aliyuncs.com/google_containers \
+--kubernetes-version v1.15.0 \
+--service-cidr<span class="token operator">=</span>10.1.0.0/16 \
+--pod-network-cidr<span class="token operator">=</span>10.244.0.0/16</code></pre>
+<p>这里会生成token，要记录下来，类似于</p>
+<pre class=" language-bash"><code class="language-bash">kubeadm <span class="token function">join</span> 192.168.8.170:6443 --token ufocob.upw1fa0fqfiuxego \
+    --discovery-token-ca-cert-hash sha256:52011414517c40d3079c4ac5d8296f77d80a70b7c20ddbb69ddb73a4e8f9bf9b</code></pre>
+<h1 id="10-添加flannel网络插件"><a href="#10-添加flannel网络插件" class="headerlink" title="10.添加flannel网络插件"></a>10.添加flannel网络插件</h1><pre class=" language-bas"><code class="language-bas">kubeadm join 192.168.8.170:6443 --token ufocob.upw1fa0fqfiuxego \
+    --discovery-token-ca-cert-hash sha256:52011414517c40d3079c4ac5d8296f77d80a70b7c20ddbb69ddb73a4e8f9bf9b</code></pre>
+<p>部署到此结束</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -540,7 +545,7 @@ area(10,20,30);</code></pre><p><a href="https://liangwenhao.cn/tags/arguements/"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/js-arguements-jie-xi/">https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/js-arguements-jie-xi/</a>
+                    <a href="https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/zai-windows-xia-bu-shu-kubernetes/">https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/zai-windows-xia-bu-shu-kubernetes/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -743,9 +748,49 @@ area(10,20,30);</code></pre><p><a href="https://liangwenhao.cn/tags/arguements/"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/06/08/zai-windows-xia-bu-shu-kubernetes/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="在Windows下部署Kubernetes">
+                        
+                        <span class="card-title">在Windows下部署Kubernetes</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            准备工作首先去官网下载vagrant和VritualBox，vagrant是一款用于创建和部署虚拟化开发环境的软件，而VritualBox就是虚拟机软件。
+【1-4】直接部署以下4步我已经写好了vagrantfile文件，大家可以下载我上传
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            大懒虫
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/06/08/kube-proxy-jie-xi/">
                     <div class="card-image">
@@ -760,49 +805,6 @@ area(10,20,30);</code></pre><p><a href="https://liangwenhao.cn/tags/arguements/"
                     <div class="summary block-with-text">
                         
                             概念Kubernetes 在每个节点上运行网络代理。这反映每个节点上 Kubernetes API 中定义的服务，并且可以做简单的 TCP 和 UDP 流转发或在一组后端中轮询，进行 TCP 和 UDP 转发。目前服务集群 IP 和端口通过
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            大懒虫
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="jdis修改阿里云服务器配置">
-                        
-                        <span class="card-title">jdis修改阿里云服务器配置</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            jedis修改阿里云服务器配置首先去阿里云添加安全组
-
-然后修改自己的redis配置文件
-
-重启redis服务即可
-redis-cli shutdown #关闭
-redis-server /lazywormConif/redis.conf 
                         
                     </div>
                     <div class="publish-info">
