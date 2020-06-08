@@ -81,6 +81,31 @@
     
     
     <entry>
+      <title>【Redis学习笔记-02】Redis入门</title>
+      <link href="/2020/06/02/redis-xue-xi-bi-ji-02-redis-ru-men/"/>
+      <url>/2020/06/02/redis-xue-xi-bi-ji-02-redis-ru-men/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Redis入门"><a href="#Redis入门" class="headerlink" title="Redis入门"></a>Redis入门</h2><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote><p>Redis 是什么？  </p></blockquote><p>Redis（Remote Dictionary Server )，即远程字典服务 !</p><p>是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，<br>并提供多种语言的API。  </p><p><img src="/images/image-20200608210233541.png" alt="Redis"></p><p>redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了<br>master-slave(主从)同步。<br>免费和开源！是当下最热门的 NoSQL 技术之一！也被人们称之为结构化数据库  </p><blockquote><p>Redis能干嘛？</p></blockquote><p>1、内存存储、持久化，内存中是断电即失、所以说持久化很重要（rdb、aof）</p><p>2、效率高，可以用于高速缓存</p><p>3、发布订阅系统</p><p>4、地图信息分析</p><p>5、计时器、计数器（浏览量！）</p><p>6、……..  </p><blockquote><p>特性</p></blockquote><p>1、多样的数据类型</p><p>2、持久化</p><p>3、集群</p><p>4、事务  </p><h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>1、启动redis服务！</p><p><img src="/images/image-20200608210740639.png" alt="启动redis服务"></p><p>2、使用redis-cli 进行连接测试！  </p><p><img src="/images/image-20200608210907101.png" alt="使用redis-cli 进行连接测试"></p><p>3、查看redis的进程是否开启！  </p><p><img src="/images/image-20200608211017762.png" alt="查看redis的进程是否开启"></p><p>4、关闭Redis服务！</p><p><img src="/images/image-20200608211104329.png" alt="关闭Redis服务"></p><p>5、再次查看进程是否存在  </p><p><img src="/images/image-20200608211140632.png" alt="再次查看进程是否存在 "></p><h2 id="使用redis-benchmark-测试性能"><a href="#使用redis-benchmark-测试性能" class="headerlink" title="使用redis-benchmark  测试性能"></a>使用redis-benchmark  测试性能</h2><p><img src="/images/image-20200608211332415.png" alt="测试性能 性能参数"></p><p>我们来简单测试下：</p><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 测试：100个并发连接 100000请求</span>redis-benchmark -h localhost -p 6379 -c 100 -n 100000</code></pre><p><img src="/images/image-20200608211920414.png" alt="100个并发连接 100000请求"></p><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>redis默认有16个数据库  </p><p><img src="/images/image-20200608212033699.png" alt="redis默认有16个数据库  "></p><p>默认使用的是第0个<br>可以使用 select 进行切换数据库  </p><pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">select</span> 3 <span class="token comment" spellcheck="true"># 切换数据库</span>OK127.0.0.1:6379<span class="token punctuation">[</span>3<span class="token punctuation">]</span><span class="token operator">></span> DBSIZE <span class="token comment" spellcheck="true"># 查看DB大小！</span><span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0</code></pre><p><img src="/images/image-20200608212323735.png" alt="select 进行切换数据库"></p><pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token punctuation">[</span>3<span class="token punctuation">]</span><span class="token operator">></span> keys * <span class="token comment" spellcheck="true"># 查看数据库所有的key</span>1<span class="token punctuation">)</span> <span class="token string">"name"</span></code></pre><p>清除当前数据库 flushdb<br>清除全部数据库的内容 FLUSHALL  </p><pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token punctuation">[</span>3<span class="token punctuation">]</span><span class="token operator">></span> flushdbOK127.0.0.1:6379<span class="token punctuation">[</span>3<span class="token punctuation">]</span><span class="token operator">></span> keys *<span class="token punctuation">(</span>empty list or set<span class="token punctuation">)</span></code></pre><h2 id="Redis是单线程的，但为什么这么快？"><a href="#Redis是单线程的，但为什么这么快？" class="headerlink" title="Redis是单线程的，但为什么这么快？"></a>Redis是单线程的，但为什么这么快？</h2><p>明白Redis是很快的，官方表示，Redis是基于内存操作，CPU不是Redis性能瓶颈，Redis的瓶颈是根据<br>机器的内存和网络带宽，既然可以使用单线程来实现，就使用单线程了！所有就使用了单线程了！</p><p>Redis 是C 语言写的，官方提供的数据为 100000+ 的QPS，完全不比同样是使用 key-vale的<br>Memecache差！</p><blockquote><p> Redis 为什么单线程还这么快？</p></blockquote><p>1、误区1：高性能的服务器一定是多线程的？</p><p>2、误区2：多线程（CPU上下文会切换！）一定比单线程效率高！</p><p>先去CPU&gt;内存&gt;硬盘的速度要有所了解！</p><p>核心：redis 是将所有的数据全部放在内存中的，所以说使用单线程去操作效率就是最高的，多线程<br>（CPU上下文会切换：耗时的操作！！！），对于内存系统来说，如果没有上下文切换效率就是最高<br>的！多次读写都是在一个CPU上的，在内存情况下，这个就是最佳的方案！  </p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> -数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在Windows下部署Kubernetes</title>
       <link href="/2020/01/07/zai-windows-xia-bu-shu-kubernetes/"/>
       <url>/2020/01/07/zai-windows-xia-bu-shu-kubernetes/</url>
