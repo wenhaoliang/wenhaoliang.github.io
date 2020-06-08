@@ -350,13 +350,6 @@
 
 <div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
     
-        <div id="prev-cover" class="left waves-effect carousel-control">
-            <i class="icon fa fa-angle-left"></i>
-        </div>
-        <div id="next-cover" class="right waves-effect carousel-control">
-            <i class="icon fa fa-angle-right"></i>
-        </div>
-    
 
     <div class="carousel-item red white-text bg-cover about-cover">
         <div class="container">
@@ -445,40 +438,6 @@
     </div>
 
     
-        
-
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/17.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">【Redis学习笔记-01】NoSQL概述</div>
-                            <div class="description center-align">
-                                
-                                    Nosql概述
-1、Nosql概述  
-
-
-90年代，一个基本的网站访问量一般不会太大，单个数据库完全足够！
-那个时候，更多的去使用静态网页 Html ~ 服务器根本没有太大的压力！
-思考一下，这种情况下：整个网站的瓶颈是什么？  
-1、数
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/2020/06/08/redis-xue-xi-bi-ji-01-nosql-gai-shu/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-    
 </div>
 
 <script>
@@ -513,19 +472,8 @@
 
         let carouselIntervalId;
         
-        // Loop to call the next cover article picture.
-        let autoCarousel = function () {
-            carouselIntervalId = setInterval(function () {
-                coverSlider.carousel('next');
-            }, 10000);
-        };
-        autoCarousel();
-        
 
         function restartPlay() {
-            
-            clearInterval(carouselIntervalId);
-            autoCarousel();
             
         };
 
@@ -576,6 +524,44 @@
                     <div id="recommend-sections" class="recommend">
                         
 
+
+
+
+
+<div class="title"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;推荐文章</div>
+
+<div class="row">
+
+    
+    
+    <div class="col s12" >
+        <div class="post-card" style="background-image: url('/medias/featureimages/17.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category">-数据库</a>
+                        
+                    
+                </div>
+                <a href="/2020/06/08/redis-xue-xi-bi-ji-01-nosql-gai-shu/">
+                    <h3 class="post-title">【Redis学习笔记-01】NoSQL概述</h3>
+                </a>
+                <p class="post-description">Nosql概述
+1、Nosql概述  
+
+
+90年代，一个基本的网站访问量一般不会太大，单个数据库完全足够！
+那个时候，更多的去使用静态网页 Html ~ 服务器根本没有</p>
+                <a href="/2020/06/08/redis-xue-xi-bi-ji-01-nosql-gai-shu/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
 
 
                     </div>
