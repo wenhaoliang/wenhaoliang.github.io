@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>jdis修改阿里云服务器配置--------1</title>
+      <link href="/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi-1/"/>
+      <url>/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi-1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="jedis修改阿里云服务器配置"><a href="#jedis修改阿里云服务器配置" class="headerlink" title="jedis修改阿里云服务器配置"></a>jedis修改阿里云服务器配置</h1><p>首先去阿里云添加安全组</p><p><img src="/wenhaoliang/wenhaoliang.github.io/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi-1/image-20200607183758806.png" alt="image-20200607183758806"></p><p><img src="https://www.liangwenhao.cn/images/2.png" alt="1"></p><p><img src="https://github.com/wenhaoliang/wenhaoliang.github.io/blob/master/images/2.png" alt="2"></p><p>然后修改自己的redis配置文件</p><p><img src="/wenhaoliang/wenhaoliang.github.io/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi-1/image-20200607184033146.png" alt="image-20200607184033146"></p><p>重启redis服务即可</p><pre class=" language-bash"><code class="language-bash">redis-cli <span class="token function">shutdown</span> <span class="token comment" spellcheck="true">#关闭</span>redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="true">#启动</span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>jdis修改阿里云服务器配置+1</title>
       <link href="/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi-1/"/>
       <url>/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi-1/</url>
