@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="jdis修改阿里云服务器配置, lazyworm">
+    <meta name="keywords" content="js-arguements解析, lazyworm">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>jdis修改阿里云服务器配置 | lazyworm</title>
+    <title>js-arguements解析 | lazyworm</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">jdis修改阿里云服务器配置</h1>
+                    <h1 class="description center-align post-title">js-arguements解析</h1>
                 </div>
             </div>
         </div>
@@ -451,7 +451,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    105
+                    364
                 </div>
                 
 
@@ -473,13 +473,30 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="jedis修改阿里云服务器配置"><a href="#jedis修改阿里云服务器配置" class="headerlink" title="jedis修改阿里云服务器配置"></a>jedis修改阿里云服务器配置</h1><p>首先去阿里云添加安全组</p>
-<p><img src="/images/1.png" alt="阿里云添加安全组"></p>
-<p>然后修改自己的redis配置文件</p>
-<p><img src="/images/2.png" alt="修改自己的redis配置"></p>
-<p>重启redis服务即可</p>
-<pre class=" language-bash"><code class="language-bash">redis-cli <span class="token function">shutdown</span> <span class="token comment" spellcheck="true">#关闭</span>
-redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="true">#启动</span></code></pre>
+                <p>在函数体内，标识符arguments是指向实参对象的引用，实参对象是一个类数组对象 arguments[0]，arguments.length</p>
+<hr>
+<p>#arguments是什么?</p>
+<p>答: </p>
+<p>1: arguments是收到的实参副本，在词法分析中, 首先按形参形成AO的属性,值为undefined<br>当实参传来时, 再修改AO的相应属性。</p>
+<p>2: 并把所有收到实参收集起来,放到一个arguments对象里，t(a,b,c){},调用时: t(1,2,3,4,5) 5个参数，此时 , AO属性只有a,bc,3个属性, arguments里有1,2,3,4,5, 所有的值，对于超出形参个数之外的实参, 可以通过arguments来获得。</p>
+<p>3: arguments 的索引 从 0, 1,2,….递增,与实参逐个对应。</p>
+<p>4: arguments.length 属性代表实参的个数。</p>
+<p>5: arguments一定不是数组, 是长的比较像数组的一个对象,虽然也有length属性。</p>
+<p>6: arguments每个函数都会有,因此,arguemnts只会在内部找自身的arguments,无法引用到外层的arguments</p>
+<pre><code>// 求圆形面积,矩形面积, 三角形面积
+function area () {
+    if(arguments.length == 1) {
+        alert(3.14 * arguments[0] * arguments[0]);
+    } else if(arguments.length == 2) {
+        alert(arguments[0] * arguments[1]);
+    } else if(arguments.length == 3) {
+        alert(arguments[0] + arguments[1] + arguments[2]);
+    } else {
+        return null;
+    }
+}
+
+area(10,20,30);</code></pre><p><a href="https://liangwenhao.cn/tags/arguements/" target="_blank" rel="noopener"># arguements</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -523,7 +540,7 @@ redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="t
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi/">https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi/</a>
+                    <a href="https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/js-arguements-jie-xi/">https://github.com/wenhaoliang/wenhaoliang.github.io/2020/06/08/js-arguements-jie-xi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -726,9 +743,10 @@ redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="t
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/06/08/js-arguements-jie-xi/">
                     <div class="card-image">
@@ -750,9 +768,9 @@ redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="t
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -761,6 +779,7 @@ redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="t
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -771,23 +790,25 @@ redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="t
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/08/idea-kuai-jie-jian/">
+                <a href="/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="idea 快捷键">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="jdis修改阿里云服务器配置">
                         
-                        <span class="card-title">idea 快捷键</span>
+                        <span class="card-title">jdis修改阿里云服务器配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            idea 快捷键
-Ctrl + Alt + T 环绕用
-Alt + Enter 导入包，自动修正代码 解决出现的问题 也可以生成返回值
-Alt + Insert 定制生成类的各项基本方法
+                            jedis修改阿里云服务器配置首先去阿里云添加安全组
 
+然后修改自己的redis配置文件
+
+重启redis服务即可
+redis-cli shutdown #关闭
+redis-server /lazywormConif/redis.conf 
                         
                     </div>
                     <div class="publish-info">

@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>js-arguements解析</title>
+      <link href="/2020/06/08/js-arguements-jie-xi/"/>
+      <url>/2020/06/08/js-arguements-jie-xi/</url>
+      
+        <content type="html"><![CDATA[<p>在函数体内，标识符arguments是指向实参对象的引用，实参对象是一个类数组对象 arguments[0]，arguments.length</p><hr><p>#arguments是什么?</p><p>答: </p><p>1: arguments是收到的实参副本，在词法分析中, 首先按形参形成AO的属性,值为undefined<br>当实参传来时, 再修改AO的相应属性。</p><p>2: 并把所有收到实参收集起来,放到一个arguments对象里，t(a,b,c){},调用时: t(1,2,3,4,5) 5个参数，此时 , AO属性只有a,bc,3个属性, arguments里有1,2,3,4,5, 所有的值，对于超出形参个数之外的实参, 可以通过arguments来获得。</p><p>3: arguments 的索引 从 0, 1,2,….递增,与实参逐个对应。</p><p>4: arguments.length 属性代表实参的个数。</p><p>5: arguments一定不是数组, 是长的比较像数组的一个对象,虽然也有length属性。</p><p>6: arguments每个函数都会有,因此,arguemnts只会在内部找自身的arguments,无法引用到外层的arguments</p><pre><code>// 求圆形面积,矩形面积, 三角形面积function area () {    if(arguments.length == 1) {        alert(3.14 * arguments[0] * arguments[0]);    } else if(arguments.length == 2) {        alert(arguments[0] * arguments[1]);    } else if(arguments.length == 3) {        alert(arguments[0] + arguments[1] + arguments[2]);    } else {        return null;    }}area(10,20,30);</code></pre><p><a href="https://liangwenhao.cn/tags/arguements/" target="_blank" rel="noopener"># arguements</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>jdis修改阿里云服务器配置</title>
       <link href="/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi/"/>
       <url>/2020/06/08/jdis-xiu-gai-a-li-yun-fu-wu-qi-pei-zhi/</url>
