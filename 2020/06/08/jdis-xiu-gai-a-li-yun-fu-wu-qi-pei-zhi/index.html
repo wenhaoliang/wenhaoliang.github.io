@@ -451,7 +451,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    53
+                    105
                 </div>
                 
 
@@ -474,13 +474,31 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="jedis修改阿里云服务器配置"><a href="#jedis修改阿里云服务器配置" class="headerlink" title="jedis修改阿里云服务器配置"></a>jedis修改阿里云服务器配置</h1><p>首先去阿里云添加安全组</p>
-<p><img src="images/image-20200607183758806.png" alt="image-20200607183758806"></p>
+<p><img src="../images/image-20200607183758806.png" alt="image-20200607183758806"></p>
 <p>然后修改自己的redis配置文件</p>
-<p><img src="images/image-20200607184033146.png" alt="image-20200607184033146"></p>
+<p><img src=".../images/image-20200607184033146.png" alt="image-20200607184033146"></p>
 <p>重启redis服务即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli shutdown <span class="comment">#关闭</span></span><br><span class="line">redis-server /lazywormConif/redis.conf <span class="comment">#启动</span></span><br></pre></td></tr></table></figure>
-
-
+<pre class=" language-bash"><code class="language-bash">redis-cli <span class="token function">shutdown</span> <span class="token comment" spellcheck="true">#关闭</span>
+redis-server /lazywormConif/redis.conf <span class="token comment" spellcheck="true">#启动</span></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -730,7 +748,8 @@
 然后修改自己的redis配置文件
 
 重启redis服务即可
-12redis-cli shutdown #关闭redis-server /lazywormConif/redis.conf
+redis-cli shutdown #关闭
+redis-server /lazywormConif/redis.conf 
                         
                     </div>
                     <div class="publish-info">
@@ -990,7 +1009,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">176</span>&nbsp;字
+                class="white-color">228</span>&nbsp;字
             
             
             
